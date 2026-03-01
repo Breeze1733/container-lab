@@ -37,7 +37,6 @@ async fn main() {
     let addr: SocketAddr = "0.0.0.0:3000".parse().unwrap();
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     println!("Listening on {}", addr);
-    println!("cache test");
 
     axum::serve(listener, app).await.unwrap();
 }
