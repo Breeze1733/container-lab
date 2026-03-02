@@ -1,0 +1,34 @@
+services:
+  web-app:
+    build:
+      context: ./counter-app
+      dockerfile: Dockerfile.fat
+    container_name: web-app
+    ports:
+      - "8080:3000"
+    depends_on:
+      - redis-db
+    environment:
+      REDIS_HOST: redis-db
+      REDIS_PORT: "6379"
+    networks:
+      frontend-net:
+        gw_priority: 1
+      backend-net:
+        gw_priority: 0
+
+  redis-db:
+    image: redis:7-alpine
+    container_name: redis-db
+    networks:
+      backend-net: {}
+
+networks:
+  frontend-net:
+    name: frontend-net
+    driver: bridge
+
+  backend-net:
+    name: backend-net
+    driver: bridge
+    internal: true

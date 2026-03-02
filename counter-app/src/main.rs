@@ -34,7 +34,7 @@ async fn main() {
         .with_state(state);
 
     // 容器化关键：绑定 0.0.0.0 而不是 127.0.0.1
-    let addr: SocketAddr = "127.0.0.1:3000".parse().unwrap();
+    let addr: SocketAddr = "0.0.0.0:3000".parse().unwrap();
     let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
     println!("Listening on {}", addr);
 
