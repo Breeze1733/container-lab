@@ -10,6 +10,10 @@ services:
       - redis-db
     environment:
       REDIS_URL: "redis://redis-db:6379/"
+    cap_drop:
+      - ALL
+    sysctls:
+      net.ipv4.ip_unprivileged_port_start: "1024"
     networks:
       frontend-net:
         gw_priority: 1
