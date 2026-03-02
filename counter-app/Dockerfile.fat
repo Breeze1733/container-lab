@@ -15,6 +15,7 @@ COPY . .
 RUN cargo build --release
 
 RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+RUN setcap 'cap_net_bind_service=+ep' /app/target/release/counter-app
 USER appuser
 
 EXPOSE 80
