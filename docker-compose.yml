@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile.fat
     container_name: web-app
     ports:
-      - "8080:3000"
+      - "8080:80"
     depends_on:
       - redis-db
     environment:
